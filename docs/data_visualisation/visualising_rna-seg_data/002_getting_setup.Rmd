@@ -1,0 +1,92 @@
+---
+title: "002_getting_setup"
+output: html_document
+date: "2025-07-02"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# GETTING SETUP
+
+# LOADING LIBRARIES
+
+We'll begin by loading a series of R libraries containing useful functions for data visualisation. If you have not yet installed these libraries, you can do so by running the following code:
+
+```{r, message=FALSE, warning = FALSE}
+
+install.packages("tidyverse")
+install.packages("matrixStats")
+install.packages("reshape2")
+install.packages("pheatmap")
+install.packages("ggpubr")
+install.packages("ggrepel")
+install.packages("hexbin")
+```
+
+Let's now load the libraries.
+
+```{r, message=FALSE, warning = FALSE}
+library(tidyverse)
+library(matrixStats)
+library(reshape2)
+library(pheatmap)
+library(ggpubr)
+library(ggrepel)
+library(hexbin)
+```
+## Loading data
+
+We will now load the GTEx gene expression table, as well as a table containing annotations for each of the genes measured in the study.  The data can be found in [this folder](https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/data_visualisation/visualising_rna-seq_data/) - download both files now.
+
+:::tip Note
+We recommend working in a new folder for this - for example by running this in your terminal:
+
+```
+mkdir rna-seq_practical
+cd rna-seq_practical
+curl -O https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/data_visualisation/visualising_rna-seq_data/GTEx-v8-RNAseq_mean-TPM_QCed.tsv
+curl -O https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/data_visualisation/visualising_rna-seq_data/GTEx_gene-annotations.tsv
+```
+This might take a minute or so to download. 
+
+Now make sure your R session is working in the same directory using `setwd()` or the `Session -> Set Working Directory` menu option in RStudio.
+:::
+```{r}
+setwd("~/Library/CloudStorage/OneDrive-QueenMary,UniversityofLondon/4. Self-learning/WHG training/whg-training-resources-replicate/docs/data_visualisation/visualising_rna-seg_data")
+```
+
+The data files are in tab-separated value (TSV) format, which means they are composed of columns, separated by tabular spaces. You can read this type of file into R by using the read.table() function, as specified below:
+```{r, message=FALSE}
+library( tidyverse )
+gtex <- read_tsv( "GTEx-v8-RNAseq_mean-TPM_QCed.tsv" )
+gene_annotations <- read_tsv( "GTEx_gene-annotations.tsv" )
+```
+
+## Checking the expression data
+
+To check this worked, let's have a closer look at the main expression table by previewing the first 10 rows and columns.
+Note how each row corresponds to a gene and each column corresponds to a tissue. Entries in the table contain the
+expression levels of each gene in each tissue in TPM units.
+
+```{r}
+print(gtex)
+```
+
+:::tip Note
+
+You've explored tibbles before.  How many rows and columns does the data have?
+
+:::
+
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
