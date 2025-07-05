@@ -1,5 +1,5 @@
 ---
-title: "allele frequencies"
+#title: "allele frequencies"
 output: github_document
 ---
 

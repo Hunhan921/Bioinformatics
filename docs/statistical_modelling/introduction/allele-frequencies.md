@@ -1,5 +1,3 @@
-allele frequencies
-================
 
 # Estimating allele frequencies
 
